@@ -5,9 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using WebApi.Authorization;
-using WebApi.Helpers;
-using WebApi.Services;
+using RegistrationLoginApi.Authorization;
+using RegistrationLoginApi.Helpers;
+using RegistrationLoginApi.Services;
+using RegistrationLoginApi.Data;
+using RegistrationLoginApi.Data.Mapping;
 
 namespace WebApi
 {
@@ -26,11 +28,13 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             // use sql server db in production and sqlite db in development
-            if (_env.IsProduction())
-                services.AddDbContext<DataContext>();
-            else
-                services.AddDbContext<DataContext, SqliteDataContext>();
+            services.AddAutoMapper(typeof(MappingProfile));
 
+            string connectionString = _configuration.GetConnectionString("default");
+            services.AddDbContext<AppDbContext>(c=>c.UseNpgsql(connectionString));
+            services.AddScoped<IAppDbContext, AppDbContext>();
+            services.AddScoped<IRepository, Repository>();
+            
             services.AddCors();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -44,10 +48,10 @@ namespace WebApi
         }
 
         // configure the HTTP request pipeline
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // migrate any database changes on startup (includes initial db creation)
-            dataContext.Database.Migrate();
+            //dataContext.Database.Migrate();
 
             app.UseRouting();
 

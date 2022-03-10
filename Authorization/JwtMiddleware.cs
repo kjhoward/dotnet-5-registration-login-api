@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Helpers;
-using WebApi.Services;
+using RegistrationLoginApi.Helpers;
+using RegistrationLoginApi.Services;
 
-namespace WebApi.Authorization
+namespace RegistrationLoginApi.Authorization
 {
     public class JwtMiddleware
     {

@@ -1,4 +1,4 @@
-namespace WebApi.Helpers
+namespace RegistrationLoginApi.Helpers
 {
     public class AppSettings
     {

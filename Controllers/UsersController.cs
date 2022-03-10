@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using WebApi.Authorization;
-using WebApi.Helpers;
-using WebApi.Models.Users;
-using WebApi.Services;
+using RegistrationLoginApi.Authorization;
+using RegistrationLoginApi.Helpers;
+using RegistrationLoginApi.Models.Users;
+using RegistrationLoginApi.Services;
+using System.Threading.Tasks;
 
-namespace WebApi.Controllers
+namespace RegistrationLoginApi.Controllers
 {
     [Authorize]
     [ApiController]
@@ -37,9 +38,9 @@ namespace WebApi.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register(RegisterRequest model)
+        public async Task<IActionResult> Register(RegisterRequest model)
         {
-            _userService.Register(model);
+            await _userService.Register(model);
             return Ok(new { message = "Registration successful" });
         }
 
@@ -58,16 +59,16 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, UpdateRequest model)
+        public async Task<IActionResult> Update(int id, UpdateRequest model)
         {
-            _userService.Update(id, model);
+            await _userService.Update(id, model);
             return Ok(new { message = "User updated successfully" });
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _userService.Delete(id);
+            await _userService.Delete(id);
             return Ok(new { message = "User deleted successfully" });
         }
     }

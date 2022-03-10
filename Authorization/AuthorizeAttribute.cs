@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Linq;
-using WebApi.Entities;
+using RegistrationLoginApi.Data.DataModels;
+using DevConsulting.Models;
 
-namespace WebApi.Authorization
+namespace RegistrationLoginApi.Authorization
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
@@ -18,7 +19,7 @@ namespace WebApi.Authorization
                 return;
 
             // authorization
-            var user = (User)context.HttpContext.Items["User"];
+            var user = (UserResource)context.HttpContext.Items["User"];
             if (user == null)
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }

@@ -2,42 +2,47 @@ using AutoMapper;
 using BCryptNet = BCrypt.Net.BCrypt;
 using System.Collections.Generic;
 using System.Linq;
-using WebApi.Authorization;
-using WebApi.Entities;
-using WebApi.Helpers;
-using WebApi.Models.Users;
+using RegistrationLoginApi.Authorization;
+using RegistrationLoginApi.Data;
+using RegistrationLoginApi.Data.DataModels;
+using RegistrationLoginApi.Helpers;
+using RegistrationLoginApi.Models.Users;
+using System.Threading;
+using System.Threading.Tasks;
+using DevConsulting.Models;
 
-namespace WebApi.Services
+namespace RegistrationLoginApi.Services
 {
     public interface IUserService
     {
         AuthenticateResponse Authenticate(AuthenticateRequest model);
-        IEnumerable<User> GetAll();
-        User GetById(int id);
-        void Register(RegisterRequest model);
-        void Update(int id, UpdateRequest model);
-        void Delete(int id);
+        IEnumerable<UserResource> GetAll();
+        UserResource GetById(long id);
+        Task Register(RegisterRequest model);
+        Task Update(long id, UpdateRequest model);
+        Task Delete(long id);
     }
 
     public class UserService : IUserService
     {
-        private DataContext _context;
+        private IRepository _repository;
         private IJwtUtils _jwtUtils;
         private readonly IMapper _mapper;
 
         public UserService(
-            DataContext context,
+            IRepository repo,
             IJwtUtils jwtUtils,
             IMapper mapper)
         {
-            _context = context;
+            _repository = repo;
             _jwtUtils = jwtUtils;
             _mapper = mapper;
         }
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = _context.Users.SingleOrDefault(x => x.Username == model.Username);
+            var userResult = _repository.GetUser(model.Username);
+            var user = userResult.Items.FirstOrDefault();
 
             // validate
             if (user == null || !BCryptNet.Verify(model.Password, user.PasswordHash))
@@ -49,39 +54,41 @@ namespace WebApi.Services
             return response;
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<UserResource> GetAll()
         {
-            return _context.Users;
+            return _repository.GetAllUsers().Items;
         }
 
-        public User GetById(int id)
+        public UserResource GetById(long id)
         {
-            return getUser(id);
+            return _repository.GetUser(id).Items.FirstOrDefault();
         }
 
-        public void Register(RegisterRequest model)
+        public async Task Register(RegisterRequest model)
         {
             // validate
-            if (_context.Users.Any(x => x.Username == model.Username))
+            var userResult = _repository.GetUser(model.Username);
+            var userVal = userResult.Items.FirstOrDefault();
+            if (userVal!=null)
                 throw new AppException("Username '" + model.Username + "' is already taken");
 
             // map model to new user object
-            var user = _mapper.Map<User>(model);
+            var user = _mapper.Map<UserResource>(model);
 
             // hash password
             user.PasswordHash = BCryptNet.HashPassword(model.Password);
 
             // save user
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            await _repository.AddUserAsync(user);
         }
 
-        public void Update(int id, UpdateRequest model)
+        public async Task Update(long id, UpdateRequest model)
         {
-            var user = getUser(id);
-
+            var user = _repository.GetUser(id).Items.FirstOrDefault();
+            var userResult = _repository.GetUser(model.Username);
+            var userVal = userResult.Items.FirstOrDefault();
             // validate
-            if (model.Username != user.Username && _context.Users.Any(x => x.Username == model.Username))
+            if (model.Username != user.Username && userVal != null)
                 throw new AppException("Username '" + model.Username + "' is already taken");
 
             // hash password if it was entered
@@ -90,24 +97,13 @@ namespace WebApi.Services
 
             // copy model to user and save
             _mapper.Map(model, user);
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            await _repository.UpdateUserAsync(user);
         }
 
-        public void Delete(int id)
+        public async Task Delete(long id)
         {
-            var user = getUser(id);
-            _context.Users.Remove(user);
-            _context.SaveChanges();
-        }
-
-        // helper methods
-
-        private User getUser(int id)
-        {
-            var user = _context.Users.Find(id);
-            if (user == null) throw new KeyNotFoundException("User not found");
-            return user;
+            var user = _repository.GetUser(id).Items.FirstOrDefault();
+            await _repository.RemoveUserAsync(user);
         }
     }
 }

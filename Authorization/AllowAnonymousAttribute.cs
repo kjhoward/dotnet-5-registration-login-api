@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApi.Authorization
+namespace RegistrationLoginApi.Authorization
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class AllowAnonymousAttribute : Attribute

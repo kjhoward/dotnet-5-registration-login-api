@@ -5,14 +5,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using WebApi.Entities;
-using WebApi.Helpers;
+using RegistrationLoginApi.Data.DataModels;
+using RegistrationLoginApi.Helpers;
+using DevConsulting.Models;
 
-namespace WebApi.Authorization
+namespace RegistrationLoginApi.Authorization
 {
     public interface IJwtUtils
     {
-        public string GenerateToken(User user);
+        public string GenerateToken(UserResource user);
         public int? ValidateToken(string token);
     }
 
@@ -25,7 +26,7 @@ namespace WebApi.Authorization
             _appSettings = appSettings.Value;
         }
 
-        public string GenerateToken(User user)
+        public string GenerateToken(UserResource user)
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
