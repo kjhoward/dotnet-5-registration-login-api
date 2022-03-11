@@ -7,10 +7,14 @@
 - Got rid of the migrations classes, will include a psql statment below to create the db table instead. 
 - Updated the URL to use HTTPS instead of HTTP
 
-## Models Project
-There is a "Models" project referenced, that can be found here https://github.com/kjhoward/RegistrationApiModels. This is required for the "QueryResult" and "UserResource" classes.
+## Models Projects
+2 Project dependencies you will want to clone:
+- https://github.com/kjhoward/DevConsulting.Common.Models
+- https://github.com/kjhoward/RegistrationApiModels
 
-The idea of the Models assembly is that it extracts your business models from the project allowing them to be used elsewhere and tested against external from the project. 
+There is are a couple "Models" projects referenced. This is required for items like the "QueryResult" and "UserResource" classes.
+
+The idea of the Models assemblies is that they extracts your business models from the project allowing them to be used elsewhere and tested against external from the project. 
 
 ## PSQL to create users table
 create table app_users(
