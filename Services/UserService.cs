@@ -2,12 +2,9 @@ using AutoMapper;
 using BCryptNet = BCrypt.Net.BCrypt;
 using System.Collections.Generic;
 using System.Linq;
-using RegistrationLoginApi.Authorization;
 using RegistrationLoginApi.Data;
-using RegistrationLoginApi.Data.DataModels;
 using RegistrationLoginApi.Helpers;
 using RegistrationLoginApi.Models.Users;
-using System.Threading;
 using System.Threading.Tasks;
 using DevConsulting.RegistrationLoginApi.Models;
 

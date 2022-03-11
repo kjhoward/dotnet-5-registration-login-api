@@ -12,6 +12,8 @@
 - https://github.com/kjhoward/DevConsulting.Common.Models
 - https://github.com/kjhoward/RegistrationApiModels
 
+After you clone the projects, you will need to update the RegistrationLoginApi.csproj ProjectReference tags to point at the location you cloned the projects to.
+
 There is are a couple "Models" projects referenced. This is required for items like the "QueryResult" and "UserResource" classes.
 
 The idea of the Models assemblies is that they extracts your business models from the project allowing them to be used elsewhere and tested against external from the project. 
