@@ -1,5 +1,5 @@
 using RegistrationLoginApi.Data.DataModels;
-using DevConsulting.Models;
+using DevConsulting.RegistrationLoginApi.Models;
 using RegistrationLoginApi.Models.Users;
 namespace RegistrationLoginApi.Data.Mapping{
     public class MappingProfile : AutoMapper.Profile{

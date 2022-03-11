@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Linq;
 using RegistrationLoginApi.Data.DataModels;
-using DevConsulting.Models;
+using DevConsulting.RegistrationLoginApi.Models;
 
 namespace RegistrationLoginApi.Authorization
 {

@@ -17,6 +17,6 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\CommonLibraries\DevConsulting.RegistrationLoginApi.Models\DevConsulting.RegistrationLoginApi.Models.csproj" />
   </ItemGroup>
 </Project>

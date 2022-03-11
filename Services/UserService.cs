@@ -9,7 +9,7 @@ using RegistrationLoginApi.Helpers;
 using RegistrationLoginApi.Models.Users;
 using System.Threading;
 using System.Threading.Tasks;
-using DevConsulting.Models;
+using DevConsulting.RegistrationLoginApi.Models;
 
 namespace RegistrationLoginApi.Services
 {

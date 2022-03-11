@@ -1,6 +1,6 @@
 using AutoMapper;
 using System.Threading.Tasks;
-using DevConsulting.Models;
+using DevConsulting.RegistrationLoginApi.Models;
 using RegistrationLoginApi.Data.DataModels;
 using System.Linq;
 using System.Collections.Generic;

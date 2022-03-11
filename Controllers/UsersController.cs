@@ -6,7 +6,7 @@ using RegistrationLoginApi.Helpers;
 using RegistrationLoginApi.Models.Users;
 using RegistrationLoginApi.Services;
 using System.Threading.Tasks;
-using DevConsulting.Models;
+using DevConsulting.RegistrationLoginApi.Models;
 
 namespace RegistrationLoginApi.Controllers
 {
