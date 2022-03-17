@@ -18,6 +18,12 @@ There is are a couple "Models" projects referenced. This is required for items l
 
 The idea of the Models assemblies is that they extracts your business models from the project allowing them to be used elsewhere and tested against external from the project. 
 
+## Unit Test Project
+The Unit test using Nunit can be found here:
+- https://github.com/kjhoward/registration-login-api-test
+
+Presently it covers the repository tests but I will be adding to it as time goes on. Feel free to grab it for your own needs.
+
 ## PSQL to create users table
 create table app_users(
 Id SERIAL PRIMARY KEY    NOT NULL,
