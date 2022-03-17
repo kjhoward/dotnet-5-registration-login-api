@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RegistrationLoginApi.Helpers;
 using RegistrationLoginApi.Services;
-using DevConsulting.RegistrationLoginApi.Models;
+using DevConsulting.RegistrationLoginApi.Client;
 
 namespace RegistrationLoginApi.Authorization
 {

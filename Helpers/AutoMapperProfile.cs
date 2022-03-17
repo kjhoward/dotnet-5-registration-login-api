@@ -1,7 +1,7 @@
 using AutoMapper;
 using RegistrationLoginApi.Data.DataModels;
 using RegistrationLoginApi.Models.Users;
-using DevConsulting.RegistrationLoginApi.Models;
+using DevConsulting.RegistrationLoginApi.Client;
 
 namespace RegistrationLoginApi.Helpers
 {

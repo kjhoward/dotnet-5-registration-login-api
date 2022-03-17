@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using DevConsulting.Common.Models;
-using DevConsulting.RegistrationLoginApi.Models;
+using DevConsulting.RegistrationLoginApi.Client;
 using RegistrationLoginApi.Data.DataModels;
 namespace RegistrationLoginApi.Data{
     public interface IRepository{

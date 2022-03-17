@@ -10,7 +10,7 @@ using RegistrationLoginApi.Helpers;
 using RegistrationLoginApi.Services;
 using RegistrationLoginApi.Data;
 using RegistrationLoginApi.Data.Mapping;
-using DevConsulting.RegistrationLoginApi.Models;
+using DevConsulting.RegistrationLoginApi.Client;
 namespace WebApi
 {
     public class Startup

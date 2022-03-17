@@ -1,7 +1,7 @@
 using AutoMapper;
 using System.Threading.Tasks;
 using DevConsulting.Common.Models;
-using DevConsulting.RegistrationLoginApi.Models;
+using DevConsulting.RegistrationLoginApi.Client;
 using RegistrationLoginApi.Data.DataModels;
 using System.Linq;
 using System.Collections.Generic;

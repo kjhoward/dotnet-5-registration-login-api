@@ -7,16 +7,18 @@
 - Got rid of the migrations classes, will include a psql statment below to create the db table instead. 
 - Updated the URL to use HTTPS instead of HTTP
 
-## Models Projects
+## Client and Models Projects
 2 Project dependencies you will want to clone:
-- https://github.com/kjhoward/DevConsulting.Common.Models
-- https://github.com/kjhoward/RegistrationApiModels
+- https://github.com/kjhoward/DevConsulting.Common.Models (common models)
+- https://github.com/kjhoward/RegistrationApiModels (client)
 
 After you clone the projects, you will need to update the RegistrationLoginApi.csproj ProjectReference tags to point at the location you cloned the projects to.
 
-There is are a couple "Models" projects referenced. This is required for items like the "QueryResult" and "UserResource" classes.
+There are a couple models and client projects referenced. This is required for items like the "QueryResult" and "UserResource" classes.
 
 The idea of the Models assemblies is that they extracts your business models from the project allowing them to be used elsewhere and tested against external from the project. 
+
+The client project allows you to connect to and interact with the RegistrationLoginAPI from different projects and APIs and surfaces the Authorization attributes for use across projects. 
 
 ## Unit Test Project
 The Unit test using Nunit can be found here:
