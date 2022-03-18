@@ -23,8 +23,8 @@ namespace RegistrationLoginApi.Authorization
             var userId = jwtUtils.ValidateToken(token);
             if (userId != null)
             {
-                // attach user to context on successful jwt validation
-                context.Items["User"] = userService.GetById(userId.Value);
+                // create a session with the userId on successful auth
+                context.Session.SetString("userid", userService.GetById(userId.Value).Id.ToString());
             }
 
             await _next(context);

@@ -45,6 +45,8 @@ namespace WebApi
             // configure DI for application services
             services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IUserService, UserService>();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // configure the HTTP request pipeline
@@ -52,6 +54,7 @@ namespace WebApi
         {
             // migrate any database changes on startup (includes initial db creation)
             //dataContext.Database.Migrate();
+            app.UseSession();
 
             app.UseRouting();
 
