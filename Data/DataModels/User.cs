@@ -14,6 +14,9 @@ namespace RegistrationLoginApi.Data.DataModels
         [Column("username")]
         public string Username { get; set; }
 
+        [Column("is_admin")]
+        public bool IsAdmin{get;set;}
+
         [Column("passwordhash")]
         [JsonIgnore]
         public string PasswordHash { get; set; }
