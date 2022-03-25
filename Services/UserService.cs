@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RegistrationLoginApi.Data;
 using RegistrationLoginApi.Helpers;
-using RegistrationLoginApi.Models.Users;
+using DevConsulting.RegistrationLoginApi.Client.Models;
 using System.Threading.Tasks;
 using DevConsulting.RegistrationLoginApi.Client;
 

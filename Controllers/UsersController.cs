@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using RegistrationLoginApi.Authorization;
 using RegistrationLoginApi.Helpers;
-using RegistrationLoginApi.Models.Users;
+using DevConsulting.RegistrationLoginApi.Client.Models;
 using RegistrationLoginApi.Services;
 using System.Threading.Tasks;
 using DevConsulting.RegistrationLoginApi.Client;

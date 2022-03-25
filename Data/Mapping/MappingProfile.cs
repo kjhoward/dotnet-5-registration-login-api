@@ -1,6 +1,6 @@
 using RegistrationLoginApi.Data.DataModels;
 using DevConsulting.RegistrationLoginApi.Client;
-using RegistrationLoginApi.Models.Users;
+using DevConsulting.RegistrationLoginApi.Client.Models;
 namespace RegistrationLoginApi.Data.Mapping{
     public class MappingProfile : AutoMapper.Profile{
         public MappingProfile(){
