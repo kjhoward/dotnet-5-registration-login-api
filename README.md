@@ -7,7 +7,7 @@
 - Got rid of the migrations classes, will include a psql statment below to create the db table instead. 
 - Updated the URL to use HTTPS instead of HTTP
 
-## Client and Models Projects
+## Models Project depencencies
 2 Project dependencies you will want to clone:
 - https://github.com/kjhoward/DevConsulting.Common.Models (common models)
 - https://github.com/kjhoward/RegistrationApiModels (client)
@@ -19,6 +19,9 @@ There are a couple models and client projects referenced. This is required for i
 The idea of the Models assemblies is that they extracts your business models from the project allowing them to be used elsewhere and tested against external from the project. 
 
 The client project allows you to connect to and interact with the RegistrationLoginAPI from different projects and APIs and surfaces the Authorization attributes for use across projects. 
+
+## Client Proxy Library
+A client proxy library that you can use to call the API is available in this repo: https://github.com/kjhoward/RegistrationLoginApiClient
 
 ## Unit Test Project
 The Unit test using Nunit can be found here:
