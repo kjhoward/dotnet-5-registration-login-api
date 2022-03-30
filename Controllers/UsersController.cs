@@ -60,7 +60,7 @@ namespace RegistrationLoginApi.Controllers
             return Ok(user);
         }
 
-        [HttpGet("/un/{username}")]
+        [HttpGet("un/{username}")]
         public IActionResult GetByUsername(string username)
         {
             var user = _userService.GetByUsername(username);
