@@ -32,7 +32,7 @@ namespace RegistrationLoginApi.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate(AuthenticateRequest model)
+        public ActionResult<AuthenticateResponse> Authenticate(AuthenticateRequest model)
         {
             var response = _userService.Authenticate(model);
             return Ok(response);
@@ -57,6 +57,13 @@ namespace RegistrationLoginApi.Controllers
         public IActionResult GetById(int id)
         {
             var user = _userService.GetById(id);
+            return Ok(user);
+        }
+
+        [HttpGet("/un/{username}")]
+        public IActionResult GetByUsername(string username)
+        {
+            var user = _userService.GetByUsername(username);
             return Ok(user);
         }
 

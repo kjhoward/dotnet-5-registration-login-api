@@ -15,6 +15,7 @@ namespace RegistrationLoginApi.Services
         AuthenticateResponse Authenticate(AuthenticateRequest model);
         IEnumerable<UserResource> GetAll();
         UserResource GetById(long id);
+        UserResource GetByUsername(string username);
         Task Register(RegisterRequest model);
         Task Update(long id, UpdateRequest model);
         Task Delete(long id);
@@ -60,7 +61,10 @@ namespace RegistrationLoginApi.Services
         {
             return _repository.GetUser(id).Items.FirstOrDefault();
         }
-
+        public UserResource GetByUsername(string username)
+        {
+            return _repository.GetUser(username).Items.FirstOrDefault();
+        }
         public async Task Register(RegisterRequest model)
         {
             // validate
