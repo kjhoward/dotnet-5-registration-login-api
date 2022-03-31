@@ -17,5 +17,8 @@ namespace RegistrationLoginApi.Data.DataModels
         [Column("passwordhash")]
         [JsonIgnore]
         public string PasswordHash { get; set; }
+
+        [Column("is_service_acct")]
+        public bool IsServiceAccount {get;set;}
     }
 }

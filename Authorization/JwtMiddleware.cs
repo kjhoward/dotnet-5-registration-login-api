@@ -20,11 +20,11 @@ namespace RegistrationLoginApi.Authorization
         public async Task Invoke(HttpContext context, IUserService userService, IJwtUtils jwtUtils)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-            var userId = jwtUtils.ValidateToken(token);
-            if (userId != null)
+            var user = jwtUtils.ValidateToken(token);
+            if (user != null)
             {
                 // create a session with the userId on successful auth
-                context.Session.SetString("userid", userService.GetById(userId.Value).Id.ToString());
+                context.Session.SetString("userid", userService.GetById(user.Id).Id.ToString());
             }
 
             await _next(context);

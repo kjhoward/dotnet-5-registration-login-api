@@ -11,6 +11,7 @@ using RegistrationLoginApi.Services;
 using RegistrationLoginApi.Data;
 using RegistrationLoginApi.Data.Mapping;
 using DevConsulting.RegistrationLoginApi.Client;
+using DevConsulting.RegistrationLoginApi.Client.Services;
 namespace WebApi
 {
     public class Startup
@@ -34,7 +35,8 @@ namespace WebApi
             services.AddDbContext<AppDbContext>(c=>c.UseNpgsql(connectionString));
             services.AddScoped<IAppDbContext, AppDbContext>();
             services.AddScoped<IRepository, Repository>();
-            
+            services.AddHttpContextAccessor();
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddCors();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
